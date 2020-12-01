@@ -16,7 +16,7 @@ import "../Styles/Login.css";
 const Login = () => {
   return (
     <div
-      classname="main-login"
+      className="main-login"
       style={{
         background: "rgb(2,0,36)",
         background:
