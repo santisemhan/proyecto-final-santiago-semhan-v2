@@ -99,6 +99,9 @@ const Items = () => {
   ];
 
   const [items, SetItems] = useState(ProductsData);
+  const addItems = (item) => {
+    SetItems([...items, item]);
+  };
 
   return (
     <>
@@ -108,7 +111,7 @@ const Items = () => {
             <ItemsTable items={items} />
           </div>
           <div className="col-5 mt-5">
-            <Ticket />
+            <Ticket items={items} />
           </div>
         </Row>
       </Container>

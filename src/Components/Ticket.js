@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 
 const useStyles = makeStyles({
   root: {
@@ -13,11 +13,6 @@ const useStyles = makeStyles({
     minHeight: 770,
     margin: "00px 0% 20px 40%",
     boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
@@ -27,10 +22,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+const Ticket = ({ items }) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+  console.log(items);
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -47,15 +41,30 @@ export default function SimpleCard() {
         <Typography className={classes.pos} color="textSecondary">
           Este ticket es solo grafico, no sirve como ticket real
         </Typography>
-        <Typography variant="body2" component="p">
-          ACA LOS PRODUCTOS SELECCIONADOS
+        <Typography variant="body2" component="p" className="mt-5">
+          {items.map((item) => (
+            <Container className="mt-2">
+              <Row>
+                <Col style={{ fontSize: "25px", fontWeight: "100" }}>
+                  {item.nombre}
+                </Col>
+                <Col
+                  style={{ fontSize: "25px", fontWeight: "100", left: "30%" }}
+                >
+                  <strong>$200</strong>
+                </Col>
+              </Row>
+            </Container>
+          ))}
         </Typography>
       </CardContent>
-      <CardActions className="mt-5">
+      <CardActions>
         <Button className="btn btn-block btn-success mt-5">
           Finalizar Compra por $300
         </Button>
       </CardActions>
     </Card>
   );
-}
+};
+
+export default Ticket;
