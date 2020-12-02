@@ -7,7 +7,6 @@ import LocalDrinkIcon from "@material-ui/icons/LocalDrink";
 import BathtubIcon from "@material-ui/icons/Bathtub";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import ItemsCards from "./ItemsCards";
-
 import { Col, Container, Row } from "react-bootstrap";
 
 function TabPanel(props) {
@@ -47,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     position: "absolute",
-    left: "45%",
-    padding: "5%",
+    right: "-20%",
+    padding: "4%",
+    boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
   },
 }));
 
@@ -85,7 +85,7 @@ const ItemsTable = (props) => {
               props.items
                 .filter((item) => item.categoria == 1)
                 .map((item) => (
-                  <Col>
+                  <Col id={item.id}>
                     <ItemsCards id={item.id} props={item} />
                   </Col>
                 ))
@@ -104,7 +104,7 @@ const ItemsTable = (props) => {
               props.items
                 .filter((item) => item.categoria == 3)
                 .map((item) => (
-                  <Col>
+                  <Col id={item.id}>
                     <ItemsCards id={item.id} props={item} />
                   </Col>
                 ))
@@ -123,7 +123,7 @@ const ItemsTable = (props) => {
               props.items
                 .filter((item) => item.categoria == 2)
                 .map((item) => (
-                  <Col>
+                  <Col id={item.id}>
                     <ItemsCards id={item.id} props={item} />
                   </Col>
                 ))
@@ -142,7 +142,7 @@ const ItemsTable = (props) => {
               props.items
                 .filter((item) => item.categoria == 0)
                 .map((item) => (
-                  <Col>
+                  <Col id={item.id}>
                     <ItemsCards id={item.id} props={item} />
                   </Col>
                 ))

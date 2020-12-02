@@ -18,6 +18,8 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import imagen from "../Images/dragon.jpg";
 import { Button } from "react-bootstrap";
+import { increment, decrement } from "./../redux/actions/counter";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -29,15 +31,14 @@ const useStyles = makeStyles({
 });
 
 const ItemsCards = (props) => {
-  console.log(props.props.nombre);
   const classes = useStyles();
-
+  console.log(props);
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={imagen}
+          image={props.props.urlImagen}
           title="Contemplative Reptile"
         />
         <CardContent>
@@ -50,19 +51,28 @@ const ItemsCards = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton color="inherit">
+        <IconButton
+          id={props.props.id}
+          color="inherit"
+          onClick={() => props.increment()}
+        >
           <ExpandLessIcon />
         </IconButton>
-        <IconButton color="inherit">
+        <IconButton
+          id={props.props.id}
+          color="inherit"
+          onClick={() => props.decrement()}
+        >
           <ExpandMoreIcon />
         </IconButton>
         <FormControl fullWidth className={classes.margin} variant="filled">
           <TextField
             disabled
-            id="outlined-disabled"
-            defaultValue="$"
+            id={props.props.id}
+            defaultValue="0"
             variant="outlined"
             size="small"
+            value={props.counter}
           />
         </FormControl>
       </CardActions>
@@ -70,4 +80,19 @@ const ItemsCards = (props) => {
   );
 };
 
-export default ItemsCards;
+const mapStateToProps = (state) => {
+  return { counter: state.counter };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: () => {
+      dispatch(increment());
+    },
+    decrement: () => {
+      dispatch(decrement());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsCards);

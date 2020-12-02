@@ -6,8 +6,17 @@ import Items from "./Items";
 const Home = () => {
   return (
     <>
-      <NavBar />
-      <Items />
+      <div
+        style={{
+          background: "rgb(2,0,36)",
+          background:
+            "linear-gradient(153deg, rgba(2,0,36,1) 0%, rgba(115,194,209,1) 48%, rgba(0,212,255,1) 100%)",
+          minHeight: "115vh",
+        }}
+      >
+        <NavBar />
+        <Items />
+      </div>
     </>
   );
 };
