@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   CardContent,
@@ -18,8 +18,6 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import imagen from "../Images/dragon.jpg";
 import { Button } from "react-bootstrap";
-import { increment, decrement } from "./../redux/actions/counter";
-import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +29,7 @@ const useStyles = makeStyles({
 });
 
 const ItemsCards = (props) => {
+  const [counter, setCounter] = useState(0);
   const classes = useStyles();
   console.log(props);
   return (
@@ -54,14 +53,14 @@ const ItemsCards = (props) => {
         <IconButton
           id={props.props.id}
           color="inherit"
-          onClick={() => props.increment()}
+          onClick={() => setCounter(counter + 1)}
         >
           <ExpandLessIcon />
         </IconButton>
         <IconButton
           id={props.props.id}
           color="inherit"
-          onClick={() => props.decrement()}
+          onClick={() => setCounter(counter - 1)}
         >
           <ExpandMoreIcon />
         </IconButton>
@@ -72,7 +71,7 @@ const ItemsCards = (props) => {
             defaultValue="0"
             variant="outlined"
             size="small"
-            value={props.counter}
+            value={counter}
           />
         </FormControl>
       </CardActions>
@@ -80,19 +79,4 @@ const ItemsCards = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { counter: state.counter };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    increment: () => {
-      dispatch(increment());
-    },
-    decrement: () => {
-      dispatch(decrement());
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsCards);
+export default ItemsCards;
