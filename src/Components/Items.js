@@ -49,8 +49,8 @@ const Items = () => {
 
   return (
     <>
-      <div className="col-8">
-        <ItemsTable />
+      <div className="col-7">
+        <ItemsTable items={items} />
       </div>
     </>
   );

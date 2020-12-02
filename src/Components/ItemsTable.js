@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ItemsTable = () => {
+const ItemsTable = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -81,32 +81,78 @@ const ItemsTable = () => {
       <TabPanel value={value} index={0}>
         <Container>
           <Row>
-            <Col>
-              <ItemsCards />
-            </Col>
-            <Col>
-              <ItemsCards />
-            </Col>
-            <Col>
-              <ItemsCards />
-            </Col>
-            <Col>
-              <ItemsCards />
-            </Col>
-            <Col>
-              <ItemsCards />
-            </Col>
+            {props.items.length > 0 ? (
+              props.items
+                .filter((item) => item.categoria == 1)
+                .map((item) => (
+                  <Col>
+                    <ItemsCards id={item.id} props={item} />
+                  </Col>
+                ))
+            ) : (
+              <tr>
+                <td colSpan={3}>No hay usuarios en la lista</td>
+              </tr>
+            )}
           </Row>
         </Container>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item
+        <Container>
+          <Row>
+            {props.items.length > 0 ? (
+              props.items
+                .filter((item) => item.categoria == 3)
+                .map((item) => (
+                  <Col>
+                    <ItemsCards id={item.id} props={item} />
+                  </Col>
+                ))
+            ) : (
+              <tr>
+                <td colSpan={3}>No hay usuarios en la lista</td>
+              </tr>
+            )}
+          </Row>
+        </Container>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Container>
+          <Row>
+            {props.items.length > 0 ? (
+              props.items
+                .filter((item) => item.categoria == 2)
+                .map((item) => (
+                  <Col>
+                    <ItemsCards id={item.id} props={item} />
+                  </Col>
+                ))
+            ) : (
+              <tr>
+                <td colSpan={3}>No hay usuarios en la lista</td>
+              </tr>
+            )}
+          </Row>
+        </Container>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <Container>
+          <Row>
+            {props.items.length > 0 ? (
+              props.items
+                .filter((item) => item.categoria == 0)
+                .map((item) => (
+                  <Col>
+                    <ItemsCards id={item.id} props={item} />
+                  </Col>
+                ))
+            ) : (
+              <tr>
+                <td colSpan={3}>No hay usuarios en la lista</td>
+              </tr>
+            )}
+          </Row>
+        </Container>
       </TabPanel>
     </div>
   );
