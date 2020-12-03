@@ -14,6 +14,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +40,20 @@ const NavBar = () => {
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
+              href="/Home"
             >
-              <ShoppingCartOutlinedIcon />
+              <NavLink className="btn btn-primary btn-sm" to="/Home">
+                <ShoppingCartOutlinedIcon />
+              </NavLink>
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               Mercado React
             </Typography>
+            <NavLink className="btn btn-success btn-sm mr-2" to="/Empleados">
+              <strong>
+                NUESTROS EMPLEADOS <PeopleAltIcon />
+              </strong>
+            </NavLink>
             <NavLink className="btn btn-primary btn-sm" to="/">
               <strong>CERRAR SESION</strong>
             </NavLink>

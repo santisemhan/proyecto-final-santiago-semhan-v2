@@ -6,12 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { Button, Col, Row, Container } from "react-bootstrap";
-import {
-  AddMoreToTicket,
-  AddLessToTicket,
-  addMore,
-  addLess,
-} from "../redux/actions/addTicket";
+import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({

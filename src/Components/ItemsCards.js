@@ -16,7 +16,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import imagen from "../Images/dragon.jpg";
 import { Button } from "react-bootstrap";
 import {
   AddMoreToTicket,

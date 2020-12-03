@@ -24,9 +24,9 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
       // state.items = state.items.filter((item) => item.id != action.item.id);
       let pos = state.items
         .map(function (e) {
-          return e.id;
+          return e.nombre;
         })
-        .indexOf(action.item.id);
+        .indexOf(action.item.nombre);
       if (pos > -1) {
         state.items.splice(pos, 1);
         return Object.assign({}, state, {
