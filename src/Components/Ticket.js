@@ -58,7 +58,7 @@ const Ticket = (props) => {
                 <Col
                   style={{ fontSize: "25px", fontWeight: "100", left: "30%" }}
                 >
-                  <strong>$200</strong>
+                  <strong>${item.precio}</strong>
                 </Col>
               </Row>
             </Container>
@@ -67,7 +67,7 @@ const Ticket = (props) => {
       </CardContent>
       <CardActions>
         <Button className="btn btn-block btn-success mt-5">
-          Finalizar Compra por $300
+          Finalizar Compra por ${props.state.addTicket.precioFinal}
         </Button>
       </CardActions>
     </Card>

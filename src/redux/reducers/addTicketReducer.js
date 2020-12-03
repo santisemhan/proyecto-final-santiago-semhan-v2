@@ -2,6 +2,7 @@ import { AddMoreToTicket, AddLessToTicket } from "./../actions/addTicket";
 
 const initialState = {
   items: [],
+  precioFinal: 0,
 };
 
 const AddOrNotTicketProducts = (state = initialState, action) => {
@@ -12,13 +13,28 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
         items: [
           ...state.items,
           {
+            id: action.item.id,
             nombre: action.item.nombre,
             precio: action.item.precio,
           },
         ],
+        precioFinal: state.precioFinal + action.item.precio,
       });
     case AddLessToTicket:
-      return state;
+      // state.items = state.items.filter((item) => item.id != action.item.id);
+      let pos = state.items
+        .map(function (e) {
+          return e.id;
+        })
+        .indexOf(action.item.id);
+      if (pos > -1) {
+        state.items.splice(pos, 1);
+      }
+      console.log(state.items);
+      return Object.assign({}, state, {
+        items: [...state.items],
+        precioFinal: state.precioFinal - action.item.precio,
+      });
     default:
       return state;
   }
