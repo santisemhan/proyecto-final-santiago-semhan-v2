@@ -18,6 +18,13 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import imagen from "../Images/dragon.jpg";
 import { Button } from "react-bootstrap";
+import {
+  AddMoreToTicket,
+  AddLessToTicket,
+  addMore,
+  addLess,
+} from "../redux/actions/addTicket";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -30,8 +37,15 @@ const useStyles = makeStyles({
 
 const ItemsCards = (props) => {
   const [counter, setCounter] = useState(0);
+  const addToTicket = (e) => {
+    setCounter(counter + 1);
+    props.addMore();
+  };
+  const lessToTicket = (e) => {
+    setCounter(counter - 1);
+    props.addLess();
+  };
   const classes = useStyles();
-  console.log(props);
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -50,18 +64,10 @@ const ItemsCards = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton
-          id={props.props.id}
-          color="inherit"
-          onClick={() => setCounter(counter + 1)}
-        >
+        <IconButton id={props.props.id} color="inherit" onClick={addToTicket}>
           <ExpandLessIcon />
         </IconButton>
-        <IconButton
-          id={props.props.id}
-          color="inherit"
-          onClick={() => setCounter(counter - 1)}
-        >
+        <IconButton id={props.props.id} color="inherit" onClick={lessToTicket}>
           <ExpandMoreIcon />
         </IconButton>
         <FormControl fullWidth className={classes.margin} variant="filled">
@@ -79,4 +85,19 @@ const ItemsCards = (props) => {
   );
 };
 
-export default ItemsCards;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    addMore: () => {
+      dispatch(addMore(props.props));
+    },
+    addLess: () => {
+      dispatch(addLess(props.props));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsCards);
