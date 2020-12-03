@@ -66,9 +66,15 @@ const Ticket = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button className="btn btn-block btn-success mt-5">
-          Finalizar Compra por ${props.state.addTicket.precioFinal}
-        </Button>
+        {props.state.addTicket.precioFinal > 0 ? (
+          <Button className="btn btn-block btn-success mt-5">
+            Finalizar Compra por ${props.state.addTicket.precioFinal}
+          </Button>
+        ) : (
+          <h5 style={{ fontWeight: "350", margin: "00px 0% 20px 11%" }}>
+            NINGUN PRODUCTO SELECCIONADO 😭
+          </h5>
+        )}
       </CardActions>
     </Card>
   );

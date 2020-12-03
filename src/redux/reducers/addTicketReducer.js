@@ -29,12 +29,14 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
         .indexOf(action.item.id);
       if (pos > -1) {
         state.items.splice(pos, 1);
+        return Object.assign({}, state, {
+          items: [...state.items],
+          precioFinal: state.precioFinal - action.item.precio,
+        });
+      } else {
+        return state;
       }
-      console.log(state.items);
-      return Object.assign({}, state, {
-        items: [...state.items],
-        precioFinal: state.precioFinal - action.item.precio,
-      });
+
     default:
       return state;
   }
