@@ -6,7 +6,7 @@ import ItemsTable from "./ItemsTable";
 import { Container, Col, Row } from "react-bootstrap";
 import Ticket from "./Ticket";
 
-const Items = () => {
+const Items = (props) => {
   const ProductsData = [
     {
       id: uuidv4(),
@@ -103,11 +103,6 @@ const Items = () => {
     SetItems([...items, item]);
   };
 
-  const [itemsTicket, setItemsTicket] = useState([]);
-  const addItemsToTicket = (item) => {
-    setItemsTicket([...itemsTicket, item]);
-  };
-
   return (
     <>
       <Container>
@@ -116,7 +111,7 @@ const Items = () => {
             <ItemsTable items={items} />
           </div>
           <div className="col-5 mt-5">
-            <Ticket items={itemsTicket} />
+            <Ticket props={props} />
           </div>
         </Row>
       </Container>

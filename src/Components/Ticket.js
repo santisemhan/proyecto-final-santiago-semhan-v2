@@ -29,8 +29,9 @@ const useStyles = makeStyles({
   },
 });
 
-const Ticket = ({ items }) => {
+const Ticket = (props) => {
   const classes = useStyles();
+  console.log(props.state.addTicket.items);
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -48,7 +49,7 @@ const Ticket = ({ items }) => {
           Este ticket es solo grafico, no sirve como ticket real
         </Typography>
         <Typography variant="body2" component="p" className="mt-5">
-          {items.map((item) => (
+          {props.state.addTicket.items.map((item) => (
             <Container className="mt-2">
               <Row>
                 <Col style={{ fontSize: "25px", fontWeight: "100" }}>
@@ -73,4 +74,19 @@ const Ticket = ({ items }) => {
   );
 };
 
-export default Ticket;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    addMore: () => {
+      dispatch(addMore(props.props));
+    },
+    addLess: () => {
+      dispatch(addLess(props.props));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Ticket);
