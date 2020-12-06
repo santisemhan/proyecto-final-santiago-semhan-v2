@@ -52,7 +52,7 @@ const Personaje = ({
               display="block"
             >
               {status === "Alive" ? "Vivo" : "Muerto"} - {gender} - {species} -
-              {"\n"} Fecha de nacimiento: {moment(created).format("YYYY-MM-DD")}
+              Fecha de nacimiento: {moment(created).format("YYYY-MM-DD")}
             </Typography>
           </CardContent>
         </CardActionArea>

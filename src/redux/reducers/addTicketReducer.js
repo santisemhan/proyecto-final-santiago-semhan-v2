@@ -1,3 +1,4 @@
+import { CallToActionSharp } from "@material-ui/icons";
 import { AddMoreToTicket, AddLessToTicket } from "./../actions/addTicket";
 
 const initialState = {
@@ -6,7 +7,6 @@ const initialState = {
 };
 
 const AddOrNotTicketProducts = (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case AddMoreToTicket:
       return Object.assign({}, state, {
@@ -16,6 +16,7 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
             id: action.item.id,
             nombre: action.item.nombre,
             precio: action.item.precio,
+            categoria: action.item.categoria,
           },
         ],
         precioFinal: state.precioFinal + action.item.precio,

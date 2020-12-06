@@ -8,6 +8,7 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { Button, Col, Row, Container } from "react-bootstrap";
 import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +27,6 @@ const useStyles = makeStyles({
 
 const Ticket = (props) => {
   const classes = useStyles();
-  console.log(props.state.addTicket.items);
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -62,9 +62,9 @@ const Ticket = (props) => {
       </CardContent>
       <CardActions>
         {props.state.addTicket.precioFinal > 0 ? (
-          <Button className="btn btn-block btn-success mt-5">
+          <NavLink className="btn btn-block btn-success mt-5" to="/Compra">
             Finalizar Compra por ${props.state.addTicket.precioFinal}
-          </Button>
+          </NavLink>
         ) : (
           <h5 style={{ fontWeight: "350", margin: "00px 0% 20px 11%" }}>
             NINGUN PRODUCTO SELECCIONADO 😭
