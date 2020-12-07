@@ -3,6 +3,7 @@ import Chart from "chart.js";
 import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 import { category } from "../Constantes/Constantes";
+import Typography from "@material-ui/core/Typography";
 
 const EstadisticasCompra = (props) => {
   const cr = React.createRef();
@@ -29,10 +30,10 @@ const EstadisticasCompra = (props) => {
             label: "Estadisticas de la compra",
             data: porcentajeFinal,
             backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              "violet",
+              "rgb(226, 70, 46)",
+              "rgb(73, 162, 66)",
+              "rgb(194, 190, 46)",
+              "rgb(192, 63, 215)",
             ],
           },
         ],
@@ -45,7 +46,20 @@ const EstadisticasCompra = (props) => {
     });
   });
 
-  return <canvas ref={cr} width="300px" height="100vh"></canvas>;
+  return (
+    <>
+      <canvas
+        ref={cr}
+        width="300px"
+        height="100vh"
+        style={{
+          paddingTop: "2%",
+          margin: "30px 0px -32%",
+          marginLeft: "-400px",
+        }}
+      ></canvas>
+    </>
+  );
 };
 
 const mapStateToProps = (state) => {

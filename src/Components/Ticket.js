@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,6 +8,7 @@ import { Button, Col, Row, Container } from "react-bootstrap";
 import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
