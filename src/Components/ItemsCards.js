@@ -22,6 +22,7 @@ import {
   AddLessToTicket,
   addMore,
   addLess,
+  deleteAll,
 } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 
@@ -43,6 +44,9 @@ const ItemsCards = (props) => {
   const lessToTicket = (e) => {
     setCounter(counter - 1);
     props.addLess();
+  };
+  const deleteAll = (e) => {
+    props.deleteAll();
   };
   const classes = useStyles();
   return (
@@ -95,6 +99,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     addLess: () => {
       dispatch(addLess(props.props));
+    },
+    deleteAll: () => {
+      dispatch(deleteAll());
     },
   };
 };

@@ -5,10 +5,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { Button, Col, Row, Container } from "react-bootstrap";
-import { addMore, addLess } from "../redux/actions/addTicket";
+import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles({
   root: {
@@ -26,6 +27,9 @@ const useStyles = makeStyles({
 });
 
 const Ticket = (props) => {
+  const deleteAll = (e) => {
+    props.deleteAll();
+  };
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -62,9 +66,14 @@ const Ticket = (props) => {
       </CardContent>
       <CardActions>
         {props.state.addTicket.precioFinal > 0 ? (
-          <NavLink className="btn btn-block btn-success mt-5" to="/Compra">
-            Finalizar Compra por ${props.state.addTicket.precioFinal}
-          </NavLink>
+          <>
+            <NavLink className="btn btn-block btn-success mt-5" to="/Compra">
+              Finalizar Compra por ${props.state.addTicket.precioFinal}
+            </NavLink>
+            <Button className="btn btn-danger mt-5 btn-sm" onClick={deleteAll}>
+              <DeleteIcon />
+            </Button>
+          </>
         ) : (
           <h5 style={{ fontWeight: "350", margin: "00px 0% 20px 11%" }}>
             NINGUN PRODUCTO SELECCIONADO 😭
@@ -86,6 +95,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     addLess: () => {
       dispatch(addLess(props.props));
+    },
+    deleteAll: () => {
+      dispatch(deleteAll());
     },
   };
 };

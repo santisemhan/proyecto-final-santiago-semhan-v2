@@ -13,7 +13,8 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import Avatar from "@material-ui/core/Avatar";
 import { deepOrange, green } from "@material-ui/core/colors";
 import { connect } from "react-redux";
-import { addMore, addLess } from "../redux/actions/addTicket";
+import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
+import "../Styles/Compra.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Compra = (props) => {
-  console.log(props);
+  const deleteAll = (e) => {
+    props.deleteAll();
+  };
   const classes = useStyles();
   return (
     <>
@@ -79,7 +82,7 @@ const Compra = (props) => {
               </Typography>
               <Typography variant="body2" component="p" className="mt-4">
                 <Image
-                  src="https://cdn.icon-icons.com/icons2/2245/PNG/128/credit_card_visa_payment_method_icon_134914.png"
+                  src="https://logodownload.org/wp-content/uploads/2016/10/visa-logo-14.png"
                   style={{
                     width: "10%",
                     height: "10%",
@@ -93,8 +96,12 @@ const Compra = (props) => {
                 </strong>
               </Typography>
             </CardContent>
-            <CardActions>
-              <NavLink className="btn btn-success btn-block" to="/Home">
+            <CardActions className="cardMargin">
+              <NavLink
+                className="btn btn-success"
+                to="/Home"
+                onClick={deleteAll}
+              >
                 Realizar otra compra!
               </NavLink>
             </CardActions>
@@ -116,6 +123,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     addLess: () => {
       dispatch(addLess(props.props));
+    },
+    deleteAll: () => {
+      dispatch(deleteAll());
     },
   };
 };

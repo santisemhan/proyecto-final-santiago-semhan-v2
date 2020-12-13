@@ -1,5 +1,9 @@
 import { CallToActionSharp } from "@material-ui/icons";
-import { AddMoreToTicket, AddLessToTicket } from "./../actions/addTicket";
+import {
+  AddMoreToTicket,
+  AddLessToTicket,
+  deleteAllInTicket,
+} from "./../actions/addTicket";
 
 const initialState = {
   items: [],
@@ -21,6 +25,7 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
         ],
         precioFinal: state.precioFinal + action.item.precio,
       });
+
     case AddLessToTicket:
       // state.items = state.items.filter((item) => item.id != action.item.id);
       let pos = state.items
@@ -37,6 +42,12 @@ const AddOrNotTicketProducts = (state = initialState, action) => {
       } else {
         return state;
       }
+
+    case deleteAllInTicket:
+      return Object.assign({}, state, {
+        items: [],
+        precioFinal: 0,
+      });
 
     default:
       return state;
