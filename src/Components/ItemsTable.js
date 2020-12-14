@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     position: "absolute",
     right: "-20%",
-    padding: "4%",
     boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
   },
 }));

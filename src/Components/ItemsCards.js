@@ -29,6 +29,7 @@ import { connect } from "react-redux";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    margin: "10px",
   },
   media: {
     height: 140,
@@ -36,13 +37,10 @@ const useStyles = makeStyles({
 });
 
 const ItemsCards = (props) => {
-  const [counter, setCounter] = useState(0);
   const addToTicket = (e) => {
-    setCounter(counter + 1);
     props.addMore();
   };
   const lessToTicket = (e) => {
-    setCounter(counter - 1);
     props.addLess();
   };
   const deleteAll = (e) => {
@@ -73,16 +71,6 @@ const ItemsCards = (props) => {
         <IconButton id={props.props.id} color="inherit" onClick={lessToTicket}>
           <ExpandMoreIcon />
         </IconButton>
-        <FormControl fullWidth className={classes.margin} variant="filled">
-          <TextField
-            disabled
-            id={props.props.id}
-            defaultValue="0"
-            variant="outlined"
-            size="small"
-            value={counter}
-          />
-        </FormControl>
       </CardActions>
     </Card>
   );
