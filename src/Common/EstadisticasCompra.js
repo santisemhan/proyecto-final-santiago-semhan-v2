@@ -4,6 +4,7 @@ import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 import { category } from "../Constantes/Constantes";
 import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 
 const EstadisticasCompra = (props) => {
   const cr = React.createRef();
@@ -22,7 +23,7 @@ const EstadisticasCompra = (props) => {
   useEffect(() => {
     var ctx = cr.current.getContext("2d");
     var myChart = new Chart(ctx, {
-      type: "pie",
+      type: "pie", //pie o bar
       data: {
         labels: ["LIMPIEZA", "COMIDA", "ROPA", "BEBIDA"],
         datasets: [
@@ -30,9 +31,9 @@ const EstadisticasCompra = (props) => {
             label: "Estadisticas de la compra",
             data: porcentajeFinal,
             backgroundColor: [
-              "rgb(226, 70, 46)",
-              "rgb(73, 162, 66)",
-              "rgb(194, 190, 46)",
+              "#ffa600",
+              "#ff6361",
+              "#58508d",
               "rgb(192, 63, 215)",
             ],
           },
@@ -48,16 +49,24 @@ const EstadisticasCompra = (props) => {
 
   return (
     <>
-      <canvas
-        ref={cr}
-        width="300px"
-        height="100vh"
+      <Paper
+        elevation={3}
         style={{
-          paddingTop: "2%",
-          margin: "30px 0px -32%",
-          marginLeft: "-400px",
+          margin: "95px 0px 0px 270px",
+          maxWidth: "35%",
         }}
-      ></canvas>
+      >
+        <canvas
+          ref={cr}
+          width="50%"
+          height="50%"
+          style={{
+            margin: "0px 0px -100% 5px",
+            maxWidth: "648px",
+            maxHeight: "594px",
+          }}
+        ></canvas>
+      </Paper>
     </>
   );
 };
