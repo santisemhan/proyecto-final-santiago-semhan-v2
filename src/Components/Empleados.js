@@ -2,8 +2,24 @@ import React, { useEffect, useState } from "react";
 import Empleado from "./Empleado";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import NavBar from "../Layout/NavBar";
+import { useHistory } from "react-router-dom";
 
 export default function PersonajesPage() {
+  const history = useHistory();
+  if (!sessionStorage.getItem("auth-token")) {
+    console.log("no auth token set");
+    history.push("");
+  } else {
+    const authToken = "123456abcdef";
+    if (sessionStorage.getItem("auth-token") == authToken) {
+      console.log("good token. Log in.");
+      //do something like redirect to todo page
+    } else {
+      console.log("bad token.");
+      history.push("");
+    }
+  }
+
   //Refs
   const baseUrl = "https://rickandmortyapi.com/api";
   const [personajes, setPersonajes] = useState([]);

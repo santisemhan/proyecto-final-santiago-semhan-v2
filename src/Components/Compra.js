@@ -15,6 +15,7 @@ import { deepOrange, green } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
 import "../Styles/Compra.css";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +46,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Compra = (props) => {
+  const history = useHistory();
+  if (!sessionStorage.getItem("auth-token")) {
+    console.log("no auth token set");
+    history.push("");
+  } else {
+    const authToken = "123456abcdef";
+    if (sessionStorage.getItem("auth-token") == authToken) {
+      console.log("good token. Log in.");
+      //do something like redirect to todo page
+    } else {
+      console.log("bad token.");
+      history.push("");
+    }
+  }
+
   const deleteAll = (e) => {
     props.deleteAll();
   };

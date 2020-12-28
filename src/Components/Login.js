@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Button,
   TextField,
   Grid,
   Paper,
@@ -9,11 +8,65 @@ import {
   Toolbar,
   Link,
 } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "fontsource-roboto";
 import "../Styles/Login.css";
+import toastr from "toastr";
+import { Button } from "react-bootstrap";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
 
 const Login = () => {
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [error, setError] = useState(0);
+  const [triggerUsuario, setTriggerUsuario] = useState(0);
+
+  const history = useHistory();
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+      "& > * + *": {
+        marginTop: theme.spacing(4),
+      },
+    },
+  }));
+
+  const handleEmailChange = (e) => {
+    setEmailInput(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPasswordInput(e.target.value);
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    let hardcodedCred = {
+      email: "user@user.com",
+      password: "123",
+    };
+
+    if (
+      emailInput == hardcodedCred.email &&
+      passwordInput == hardcodedCred.password
+    ) {
+      const token = "123456abcdef";
+      sessionStorage.setItem("auth-token", token);
+      history.push("/Home");
+    } else {
+      setError(1);
+    }
+  };
+
+  const mostrarUsuarioValido = () => {
+    setError(0);
+    setTriggerUsuario(1);
+  };
+
+  const classes = useStyles();
+
   return (
     <div
       className="main-login"
@@ -44,7 +97,7 @@ const Login = () => {
                 </Typography>
               </Grid>
               <Grid item style={{ padding: "20px" }}>
-                <form>
+                <form onSubmit={handleLoginSubmit}>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
                       <TextField
@@ -54,6 +107,8 @@ const Login = () => {
                         name="username"
                         //required
                         autoFocus
+                        value={emailInput}
+                        onChange={handleEmailChange}
                       />
                     </Grid>
                     <Grid item>
@@ -62,21 +117,51 @@ const Login = () => {
                         label="Password"
                         fullWidth
                         name="password"
-                        //required
+                        required
+                        value={passwordInput}
+                        onChange={handlePasswordChange}
                       />
                     </Grid>
                     <Grid item>
-                      <NavLink
+                      <Button
                         className="btn btn-primary btn-sm btn-block mt-3"
-                        to="/Home"
                         type="submit"
                       >
                         <strong>ENTRAR</strong>
-                      </NavLink>
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Link
+                        href="#"
+                        variant="body2"
+                        onClick={mostrarUsuarioValido}
+                      >
+                        No tienes usuario?
+                      </Link>
                     </Grid>
                   </Grid>
                 </form>
               </Grid>
+              {triggerUsuario === 1 ? (
+                <div className={classes.root}>
+                  <Alert variant="filled" severity="success">
+                    Email: user@user.com Password: 123
+                  </Alert>
+                </div>
+              ) : (
+                <p></p>
+              )}
+              {error === 1 ? (
+                <div className="mt-3">
+                  <div className={classes.root}>
+                    <Alert variant="filled" severity="error">
+                      Usuario y/o contraseña erronea
+                    </Alert>
+                  </div>
+                </div>
+              ) : (
+                <p></p>
+              )}
             </Paper>
           </Grid>
         </Grid>
