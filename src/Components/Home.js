@@ -24,6 +24,7 @@ const Home = () => {
         style={{
           background: "linear-gradient(to top, #48c6ef 0%, #6f86d6 100%)",
           minHeight: "100vh",
+          backgroundSize: "cover",
         }}
       >
         <NavBar />
