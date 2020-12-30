@@ -168,7 +168,7 @@ const Items = (props) => {
       handleClickOpen();
       setTitulo("PRODUCTO NO AGREGADO!");
       setTexto(
-        "El producto no ha sido agregado ya que el precio es invalido. Recuerda que debe ser mayor que $0 y en el formulario debe ir sin el signo $"
+        "El producto no ha sido agregado ya que el precio es invalido. Recuerda que debe ser mayor que $0 y en el formulario debe ir sin el signo $."
       );
     }
   };
