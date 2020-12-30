@@ -11,6 +11,16 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import Alert from "@material-ui/lab/Alert";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const Items = (props) => {
   const ProductsData = [
@@ -115,14 +125,27 @@ const Items = (props) => {
 
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [items, SetItems] = useState(ProductsData);
   const [agregandoItem, SetAgregandoItem] = useState(false);
   const [item, setItem] = useState({
     nombre: "",
-    precio: 0,
+    precio: 1,
     categoria: "",
     urlImagen: "",
   });
+  const [error, setError] = useState(true);
+  const [titulo, setTitulo] = useState("");
+  const [texto, setTexto] = useState("");
 
   const registroItem = (e) => {
     e.preventDefault();
@@ -134,10 +157,20 @@ const Items = (props) => {
   };
 
   const addItems = (item) => {
+    item.id = uuidv4();
+    item.precio = parseInt(item.precio);
     console.log(item);
-    console.log(typeof items);
-    console.log(typeof item);
-    SetItems([...items, item]);
+    if (item.precio > 0) {
+      SetItems([...items, item]);
+      setItem({ nombre: "", precio: 1, categoria: "", urlImagen: "" });
+      SetAgregandoItem(false);
+    } else {
+      handleClickOpen();
+      setTitulo("PRODUCTO NO AGREGADO!");
+      setTexto(
+        "El producto no ha sido agregado ya que el precio es invalido. Recuerda que debe ser mayor que $0 y en el formulario debe ir sin el signo $"
+      );
+    }
   };
 
   const handlerInput = (e) => {
@@ -148,38 +181,46 @@ const Items = (props) => {
     });
   };
 
-  const currencies = [
-    {
-      value: "USD",
-      label: "$",
-    },
-    {
-      value: "EUR",
-      label: "€",
-    },
-    {
-      value: "BTC",
-      label: "฿",
-    },
-    {
-      value: "JPY",
-      label: "¥",
-    },
-  ];
-
   return (
     <>
       {agregandoItem == false ? (
-        <Container>
-          <Row>
-            <div className="col-5 mt-5">
-              <ItemsTable items={items} agregandoItem={SetAgregandoItem} />
-            </div>
-            <div className="col-5 mt-5">
-              <Ticket props={props} />
-            </div>
-          </Row>
-        </Container>
+        <>
+          {error === true ? (
+            <>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">{titulo}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    {texto}
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    Cerrar
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </>
+          ) : (
+            <p></p>
+          )}
+
+          <Container>
+            <Row>
+              <div className="col-5 mt-5">
+                <ItemsTable items={items} agregandoItem={SetAgregandoItem} />
+              </div>
+              <div className="col-5 mt-5">
+                <Ticket props={props} />
+              </div>
+            </Row>
+          </Container>
+        </>
       ) : (
         <Container>
           <div className="row justify-content-center h-150">
@@ -231,31 +272,37 @@ const Items = (props) => {
                   />
                 </div>
                 <div className="form-group">
-                  <TextField
-                    style={{ marginTop: "15px" }}
-                    value={item.categoria}
-                    autoWidth
-                    id="categoria"
-                    type="text"
-                    className="form-control"
-                    placeholder="SELECCIONAR"
-                    onChange={handlerInput}
-                    name="categoria"
-                    className="form-control"
-                  >
-                    {currencies.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                  <FormControl className="mt-2">
+                    <InputLabel
+                      shrink
+                      id="demo-simple-select-placeholder-label-label"
+                    >
+                      Categoria
+                    </InputLabel>
+                    <Select
+                      style={{ width: "380px" }}
+                      labelId="demo-simple-select-placeholder-label-label"
+                      id="demo-simple-select-placeholder-label"
+                      onChange={handlerInput}
+                      displayEmpty
+                      className={classes.selectEmpty}
+                      name="categoria"
+                      value={item.categoria}
+                      required
+                    >
+                      <MenuItem value={1}>COMIDA</MenuItem>
+                      <MenuItem value={3}>BEBIDA</MenuItem>
+                      <MenuItem value={2}>ROPA</MenuItem>
+                      <MenuItem value={0}>LIMPIEZA</MenuItem>
+                    </Select>
+                  </FormControl>
                 </div>
                 <div className="form-group">
                   <TextField
                     required
                     id="urlImagen"
                     label="Imagen URL"
-                    style={{ width: "380px" }}
+                    style={{ width: "380px", marginTop: "-11px" }}
                     type="text"
                     className="form-control"
                     onChange={handlerInput}
@@ -267,14 +314,14 @@ const Items = (props) => {
                   onClick={() => {
                     SetAgregandoItem(false);
                   }}
-                  style={{ marginTop: "20px", marginLeft: "20%" }}
+                  style={{ marginTop: "25px", marginLeft: "20%" }}
                 >
                   Volver
                 </Button>
                 <Button
                   type="submit"
                   className="btn btn-success ml-5"
-                  style={{ marginTop: "20px" }}
+                  style={{ marginTop: "25px" }}
                 >
                   Agregar Item
                 </Button>

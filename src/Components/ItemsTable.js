@@ -65,8 +65,6 @@ const ItemsTable = (props) => {
     setValue(newValue);
   };
 
-  console.log(props);
-
   return (
     <Container>
       <div className={classes.root}>
@@ -99,7 +97,7 @@ const ItemsTable = (props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={3}>No hay usuarios en la lista</td>
+                  <td colSpan={3}>No hay productos en la lista</td>
                 </tr>
               )}
             </Row>
@@ -118,7 +116,7 @@ const ItemsTable = (props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={3}>No hay usuarios en la lista</td>
+                  <td colSpan={3}>No hay productos en la lista</td>
                 </tr>
               )}
             </Row>
@@ -137,7 +135,7 @@ const ItemsTable = (props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={3}>No hay usuarios en la lista</td>
+                  <td colSpan={3}>No hay productos en la lista</td>
                 </tr>
               )}
             </Row>
@@ -156,7 +154,7 @@ const ItemsTable = (props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={3}>No hay usuarios en la lista</td>
+                  <td colSpan={3}>No hay productos en la lista</td>
                 </tr>
               )}
             </Row>
