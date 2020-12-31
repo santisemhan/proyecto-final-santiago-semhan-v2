@@ -7,24 +7,14 @@ import {
   Card,
   CardMedia,
   Typography,
-  FormControl,
-  InputLabel,
-  FilledInput,
-  InputAdornment,
-  TextField,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Button } from "react-bootstrap";
-import {
-  AddMoreToTicket,
-  AddLessToTicket,
-  addMore,
-  addLess,
-  deleteAll,
-} from "../redux/actions/addTicket";
+import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles({
   root: {
@@ -47,6 +37,8 @@ const ItemsCards = (props) => {
     props.deleteAll();
   };
   const classes = useStyles();
+
+  console.log(props);
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -70,6 +62,17 @@ const ItemsCards = (props) => {
         </IconButton>
         <IconButton id={props.props.id} color="inherit" onClick={lessToTicket}>
           <ExpandMoreIcon />
+        </IconButton>
+        <IconButton
+          aria-label="delete"
+          variant="inherit"
+          startIcon={<DeleteIcon />}
+          onClick={() => {
+            props.deleteItem(props.props.id);
+          }}
+          style={{ color: "#525252" }}
+        >
+          <DeleteIcon />
         </IconButton>
       </CardActions>
     </Card>

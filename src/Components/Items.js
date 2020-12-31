@@ -181,6 +181,10 @@ const Items = (props) => {
     });
   };
 
+  const deleteItem = (id) => {
+    SetItems(items.filter((item) => item.id !== id));
+  };
+
   return (
     <>
       {agregandoItem == false ? (
@@ -213,7 +217,11 @@ const Items = (props) => {
           <Container>
             <Row>
               <div className="col-5 mt-5">
-                <ItemsTable items={items} agregandoItem={SetAgregandoItem} />
+                <ItemsTable
+                  items={items}
+                  agregandoItem={SetAgregandoItem}
+                  deleteItem={deleteItem}
+                />
               </div>
               <div className="col-5 mt-5">
                 <Ticket props={props} />

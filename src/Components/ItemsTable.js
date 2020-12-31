@@ -92,7 +92,11 @@ const ItemsTable = (props) => {
                   .filter((item) => item.categoria == 1)
                   .map((item) => (
                     <Col id={item.id}>
-                      <ItemsCards id={item.id} props={item} />
+                      <ItemsCards
+                        id={item.id}
+                        props={item}
+                        deleteItem={props.deleteItem}
+                      />
                     </Col>
                   ))
               ) : (
@@ -111,7 +115,11 @@ const ItemsTable = (props) => {
                   .filter((item) => item.categoria == 3)
                   .map((item) => (
                     <Col id={item.id}>
-                      <ItemsCards id={item.id} props={item} />
+                      <ItemsCards
+                        id={item.id}
+                        props={item}
+                        deleteItem={props.deleteItem}
+                      />
                     </Col>
                   ))
               ) : (
@@ -130,7 +138,11 @@ const ItemsTable = (props) => {
                   .filter((item) => item.categoria == 2)
                   .map((item) => (
                     <Col id={item.id}>
-                      <ItemsCards id={item.id} props={item} />
+                      <ItemsCards
+                        id={item.id}
+                        props={item}
+                        deleteItem={props.deleteItem}
+                      />
                     </Col>
                   ))
               ) : (
@@ -149,7 +161,11 @@ const ItemsTable = (props) => {
                   .filter((item) => item.categoria == 0)
                   .map((item) => (
                     <Col id={item.id}>
-                      <ItemsCards id={item.id} props={item} />
+                      <ItemsCards
+                        id={item.id}
+                        props={item}
+                        deleteItem={props.deleteItem}
+                      />
                     </Col>
                   ))
               ) : (
