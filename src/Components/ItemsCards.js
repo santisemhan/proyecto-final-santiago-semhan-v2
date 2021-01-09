@@ -7,6 +7,7 @@ import {
   Card,
   CardMedia,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
@@ -24,6 +25,19 @@ const useStyles = makeStyles({
     height: 140,
   },
 });
+
+const getCounter = (props) => {
+  let pos = props.state.addTicket.ticket
+    .map(function (e) {
+      return e.nombre;
+    })
+    .indexOf(props.props.nombre);
+  if (pos === -1) {
+    return 0;
+  } else {
+    return props.state.addTicket.ticket[pos].cantidad;
+  }
+};
 
 const ItemsCards = (props) => {
   const addToTicket = (e) => {
@@ -59,6 +73,14 @@ const ItemsCards = (props) => {
         <IconButton id={props.props.id} color="inherit" onClick={lessToTicket}>
           <ExpandMoreIcon />
         </IconButton>
+        <TextField
+          disabled
+          id={props.props.id}
+          defaultValue="0"
+          variant="outlined"
+          size="small"
+          value={getCounter(props)}
+        />
         <IconButton
           aria-label="delete"
           variant="inherit"
