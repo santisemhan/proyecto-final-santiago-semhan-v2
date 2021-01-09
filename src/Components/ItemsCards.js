@@ -78,7 +78,7 @@ const ItemsCards = (props) => {
           id={props.props.id}
           defaultValue="0"
           variant="outlined"
-          size="small"
+          style={{ width: 50 }}
           value={getCounter(props)}
         />
         <IconButton

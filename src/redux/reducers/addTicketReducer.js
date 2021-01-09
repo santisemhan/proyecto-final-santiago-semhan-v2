@@ -13,7 +13,6 @@ const initialState = {
 const AddOrNotTicketProducts = (state = initialState, action) => {
   switch (action.type) {
     case AddMoreToTicket:
-      console.log(state);
       if (state.items.some((item) => item.nombre === action.item.nombre)) {
         let itemAnterior = state.ticket.filter(
           (item) => item.nombre === action.item.nombre

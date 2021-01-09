@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -31,7 +31,6 @@ const Ticket = (props) => {
     props.deleteAll();
   };
 
-  console.log(props);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
