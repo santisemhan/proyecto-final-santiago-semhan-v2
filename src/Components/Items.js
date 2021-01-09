@@ -121,16 +121,7 @@ const Items = (props) => {
 
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  const [open, setOpen] = useState(false);
   const [items, SetItems] = useState(ProductsData);
   const [agregandoItem, SetAgregandoItem] = useState(false);
   const [item, setItem] = useState({
@@ -142,6 +133,14 @@ const Items = (props) => {
   const [error, setError] = useState(true);
   const [titulo, setTitulo] = useState("");
   const [texto, setTexto] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const registroItem = (e) => {
     e.preventDefault();
