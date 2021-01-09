@@ -1,4 +1,3 @@
-import { Container } from "@material-ui/core";
 import React from "react";
 import NavBar from "../Layout/NavBar";
 import Items from "./Items";
@@ -11,7 +10,7 @@ const Home = () => {
     history.push("");
   } else {
     const authToken = "123456abcdef";
-    if (sessionStorage.getItem("auth-token") == authToken) {
+    if (sessionStorage.getItem("auth-token") === authToken) {
       console.log("good token. Log in.");
     } else {
       console.log("bad token.");

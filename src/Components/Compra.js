@@ -8,10 +8,8 @@ import { NavLink } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import DoneIcon from "@material-ui/icons/Done";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Col, Row, Container, Image } from "react-bootstrap";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Avatar from "@material-ui/core/Avatar";
-import { deepOrange, green } from "@material-ui/core/colors";
+import { Image } from "react-bootstrap";
+import { green } from "@material-ui/core/colors";
 import { connect } from "react-redux";
 import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
 import "../Styles/Compra.css";
@@ -52,7 +50,7 @@ const Compra = (props) => {
     history.push("");
   } else {
     const authToken = "123456abcdef";
-    if (sessionStorage.getItem("auth-token") == authToken) {
+    if (sessionStorage.getItem("auth-token") === authToken) {
       console.log("good token. Log in.");
       //do something like redirect to todo page
     } else {

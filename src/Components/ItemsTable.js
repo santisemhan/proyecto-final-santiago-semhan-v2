@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AppBar, Typography, Tabs, Tab, Box } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,9 +10,6 @@ import ItemsCards from "./ItemsCards";
 import { Col, Container, Row } from "react-bootstrap";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { IconButton } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -89,7 +86,7 @@ const ItemsTable = (props) => {
             <Row>
               {props.items.length > 0 ? (
                 props.items
-                  .filter((item) => item.categoria == 1)
+                  .filter((item) => item.categoria === 1)
                   .map((item) => (
                     <Col id={item.id}>
                       <ItemsCards
@@ -112,7 +109,7 @@ const ItemsTable = (props) => {
             <Row>
               {props.items.length > 0 ? (
                 props.items
-                  .filter((item) => item.categoria == 3)
+                  .filter((item) => item.categoria === 3)
                   .map((item) => (
                     <Col id={item.id}>
                       <ItemsCards
@@ -135,7 +132,7 @@ const ItemsTable = (props) => {
             <Row>
               {props.items.length > 0 ? (
                 props.items
-                  .filter((item) => item.categoria == 2)
+                  .filter((item) => item.categoria === 2)
                   .map((item) => (
                     <Col id={item.id}>
                       <ItemsCards
@@ -158,7 +155,7 @@ const ItemsTable = (props) => {
             <Row>
               {props.items.length > 0 ? (
                 props.items
-                  .filter((item) => item.categoria == 0)
+                  .filter((item) => item.categoria === 0)
                   .map((item) => (
                     <Col id={item.id}>
                       <ItemsCards

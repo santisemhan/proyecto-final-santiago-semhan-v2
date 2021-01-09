@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { category } from "../Constantes/Constantes";
 import ItemsTable from "./ItemsTable";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 import Ticket from "./Ticket";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Alert from "@material-ui/lab/Alert";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -159,7 +155,6 @@ const Items = (props) => {
   const addItems = (item) => {
     item.id = uuidv4();
     item.precio = parseInt(item.precio);
-    console.log(item);
     if (item.precio > 0) {
       SetItems([...items, item]);
       setItem({ nombre: "", precio: 1, categoria: "", urlImagen: "" });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -30,6 +30,8 @@ const Ticket = (props) => {
   const deleteAll = (e) => {
     props.deleteAll();
   };
+
+  console.log(props);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -48,20 +50,24 @@ const Ticket = (props) => {
           Este ticket es solo grafico, no sirve como ticket real
         </Typography>
         <Typography variant="body2" component="p" className="mt-5">
-          {props.state.addTicket.items.map((item) => (
-            <Container className="mt-2">
-              <Row>
-                <Col style={{ fontSize: "25px", fontWeight: "100" }}>
-                  {item.nombre}
-                </Col>
-                <Col
-                  style={{ fontSize: "25px", fontWeight: "100", left: "30%" }}
-                >
-                  <strong>${item.precio}</strong>
-                </Col>
-              </Row>
-            </Container>
-          ))}
+          {props.state.addTicket.ticket.map((item) =>
+            item.cantidad !== 0 ? (
+              <Container className="mt-2">
+                <Row>
+                  <Col style={{ fontSize: "25px", fontWeight: "100" }}>
+                    x{item.cantidad} {item.nombre}
+                  </Col>
+                  <Col
+                    style={{ fontSize: "25px", fontWeight: "100", left: "30%" }}
+                  >
+                    <strong>${item.precioTotalProducto}</strong>
+                  </Col>
+                </Row>
+              </Container>
+            ) : (
+              <></>
+            )
+          )}
         </Typography>
       </CardContent>
       <CardActions>

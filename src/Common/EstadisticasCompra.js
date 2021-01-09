@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import Chart from "chart.js";
 import { addMore, addLess } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
-import { category } from "../Constantes/Constantes";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 
 const EstadisticasCompra = (props) => {
@@ -18,11 +16,10 @@ const EstadisticasCompra = (props) => {
   for (let i = 0; i < categorias.length; i++) {
     porcentajeFinal[i] = Math.round((categorias[i] / total) * 100);
   }
-  console.log(categorias);
 
   useEffect(() => {
     var ctx = cr.current.getContext("2d");
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: "pie", //pie o bar
       data: {
         labels: ["LIMPIEZA", "COMIDA", "ROPA", "BEBIDA"],

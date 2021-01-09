@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Empleado from "./Empleado";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 import NavBar from "../Layout/NavBar";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export default function PersonajesPage() {
     history.push("");
   } else {
     const authToken = "123456abcdef";
-    if (sessionStorage.getItem("auth-token") == authToken) {
+    if (sessionStorage.getItem("auth-token") === authToken) {
       console.log("good token. Log in.");
       //do something like redirect to todo page
     } else {
@@ -40,7 +40,6 @@ export default function PersonajesPage() {
     <>
       <div
         style={{
-          background: "rgb(2,0,36)",
           background:
             "linear-gradient(153deg, rgba(2,0,36,1) 0%, rgba(115,194,209,1) 48%, rgba(0,212,255,1) 100%)",
           minHeight: "100vh",

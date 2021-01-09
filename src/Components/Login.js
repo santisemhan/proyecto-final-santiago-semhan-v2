@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Grid,
-  Paper,
-  AppBar,
-  Typography,
-  Toolbar,
-  Link,
-} from "@material-ui/core";
-import { NavLink, useHistory } from "react-router-dom";
+import { TextField, Grid, Paper, Typography, Link } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import "fontsource-roboto";
 import "../Styles/Login.css";
-import toastr from "toastr";
 import { Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
@@ -49,8 +40,8 @@ const Login = () => {
     };
 
     if (
-      emailInput == hardcodedCred.email &&
-      passwordInput == hardcodedCred.password
+      emailInput === hardcodedCred.email &&
+      passwordInput === hardcodedCred.password
     ) {
       const token = "123456abcdef";
       sessionStorage.setItem("auth-token", token);
@@ -71,7 +62,6 @@ const Login = () => {
     <div
       className="main-login"
       style={{
-        background: "rgb(2,0,36)",
         background:
           "linear-gradient(153deg, rgba(2,0,36,1) 0%, rgba(115,194,209,1) 48%, rgba(0,212,255,1) 100%)",
         minHeight: "100vh",

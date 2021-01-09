@@ -5,7 +5,7 @@ import Empleados from "./Components/Empleados";
 import Compra from "./Components/Compra";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   return (

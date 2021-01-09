@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   IconButton,
   CardContent,
@@ -11,7 +11,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Button } from "react-bootstrap";
 import { addMore, addLess, deleteAll } from "../redux/actions/addTicket";
 import { connect } from "react-redux";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -33,12 +32,9 @@ const ItemsCards = (props) => {
   const lessToTicket = (e) => {
     props.addLess();
   };
-  const deleteAll = (e) => {
-    props.deleteAll();
-  };
+
   const classes = useStyles();
 
-  console.log(props);
   return (
     <Card className={classes.root}>
       <CardActionArea>
